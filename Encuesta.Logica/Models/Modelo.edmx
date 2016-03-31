@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="control_metricaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asistencias">
+          <Key>
+            <PropertyRef Name="id_asistencia" />
+          </Key>
+          <Property Name="id_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="tipo_asistencia" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="fecha_asistencia" Type="date" Nullable="false" />
+          <Property Name="hora_asistencia" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ip_conexion" Type="varchar" MaxLength="15" />
+          <Property Name="latitud" Type="varchar" MaxLength="30" />
+          <Property Name="longitud" Type="varchar" MaxLength="30" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fec_reg" Type="datetime" Nullable="false" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="cliente_empleado">
+          <Key>
+            <PropertyRef Name="id_cliemp" />
+          </Key>
+          <Property Name="id_cliemp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="id_evaluador" Type="int" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="razon_social" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ruc" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="latitud" Type="varchar" MaxLength="30" />
+          <Property Name="longitud" Type="varchar" MaxLength="30" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fec_reg" Type="datetime" Nullable="false" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="correlativo">
+          <Key>
+            <PropertyRef Name="id_correlativo" />
+          </Key>
+          <Property Name="id_correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero" Type="int" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="datetime" />
+          <Property Name="tipo_correlativo" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="documentos">
+          <Key>
+            <PropertyRef Name="id_documento" />
+          </Key>
+          <Property Name="id_documento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ruta" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="30" />
+          <Property Name="leido_por" Type="text" />
+        </EntityType>
+        <EntityType Name="empleados">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dni" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tipo_usuario" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="foto" Type="text" />
+          <Property Name="curri_file" Type="varchar(max)" />
+          <Property Name="hora_ingreso" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fec_reg" Type="datetime" Nullable="false" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+          <Property Name="hora_salida" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="encuesta_config">
+          <Key>
+            <PropertyRef Name="id_encuesta" />
+          </Key>
+          <Property Name="id_encuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_ini" Type="date" Nullable="false" />
+          <Property Name="fecha_fin" Type="date" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="puntaje" Type="varchar" MaxLength="100" />
+          <Property Name="fec_reg" Type="datetime" Nullable="false" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evaluadors">
+          <Key>
+            <PropertyRef Name="id_evaluador" />
+          </Key>
+          <Property Name="id_evaluador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cargo" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="30" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fec_reg" Type="datetime" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="gpreguntas">
+          <Key>
+            <PropertyRef Name="id_gpregunta" />
+          </Key>
+          <Property Name="id_gpregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fec_reg" Type="datetime" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="preguntas">
+          <Key>
+            <PropertyRef Name="id_pregunta" />
+          </Key>
+          <Property Name="id_pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_gpregunta" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fec_reg" Type="datetime" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="reporte_asistencia">
+          <Key>
+            <PropertyRef Name="id_reporte_asistencia" />
+          </Key>
+          <Property Name="id_reporte_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="100" />
+          <Property Name="Usuario" Type="varchar" MaxLength="30" />
+          <Property Name="Fecha_Asistencia" Type="date" />
+          <Property Name="Hora_Ingreso_Est" Type="varchar" MaxLength="5" />
+          <Property Name="Hora_Ingreso_Marcado" Type="varchar" MaxLength="50" />
+          <Property Name="IP_Ingreso" Type="varchar" MaxLength="15" />
+          <Property Name="Diferencia_Ingreso" Type="varchar" MaxLength="100" />
+          <Property Name="Hora_Salida_Est" Type="varchar" MaxLength="50" />
+          <Property Name="Hora_Salida_Marcado" Type="varchar" MaxLength="50" />
+          <Property Name="IP_Salida" Type="varchar" MaxLength="15" />
+          <Property Name="Diferencia_Salida" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha_Registro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="resultado">
+          <Key>
+            <PropertyRef Name="id_resultado" />
+          </Key>
+          <Property Name="id_resultado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="id_evaluador" Type="int" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="id_pregunta" Type="int" Nullable="false" />
+          <Property Name="anio_evaluacion" Type="int" Nullable="false" />
+          <Property Name="mes_evaluacion" Type="int" Nullable="false" />
+          <Property Name="fecha_evaluacion" Type="datetime" Nullable="false" />
+          <Property Name="puntaje" Type="int" Nullable="false" />
+          <Property Name="comentario" Type="varchar" MaxLength="500" />
+          <Property Name="fec_reg" Type="datetime" />
+          <Property Name="fec_mod" Type="datetime" />
+          <Property Name="usu_reg" Type="varchar" MaxLength="30" />
+          <Property Name="usu_mod" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__asistenci__id_em__4AB81AF0">
+          <End Role="empleados" Type="Self.empleados" Multiplicity="1" />
+          <End Role="asistencias" Type="Self.asistencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleados">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="asistencias">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__preguntas__id_gp__5CD6CB2B">
+          <End Role="gpreguntas" Type="Self.gpreguntas" Multiplicity="1" />
+          <End Role="preguntas" Type="Self.preguntas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gpreguntas">
+              <PropertyRef Name="id_gpregunta" />
+            </Principal>
+            <Dependent Role="preguntas">
+              <PropertyRef Name="id_gpregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_em__6754599E">
+          <End Role="empleados" Type="Self.empleados" Multiplicity="1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleados">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_ev__66603565">
+          <End Role="evaluadors" Type="Self.evaluadors" Multiplicity="1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evaluadors">
+              <PropertyRef Name="id_evaluador" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_evaluador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_pr__68487DD7">
+          <End Role="preguntas" Type="Self.preguntas" Multiplicity="1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preguntas">
+              <PropertyRef Name="id_pregunta" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cliente_empleado_clientes">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="cliente_empleado" Type="Self.cliente_empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="cliente_empleado">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cliente_empleado_empleado">
+          <End Role="empleados" Type="Self.empleados" Multiplicity="1" />
+          <End Role="cliente_empleado" Type="Self.cliente_empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleados">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="cliente_empleado">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cliente_empleado_evaluadors">
+          <End Role="evaluadors" Type="Self.evaluadors" Multiplicity="0..1" />
+          <End Role="cliente_empleado" Type="Self.cliente_empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evaluadors">
+              <PropertyRef Name="id_evaluador" />
+            </Principal>
+            <Dependent Role="cliente_empleado">
+              <PropertyRef Name="id_evaluador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_resultado_encuesta">
+          <End Role="encuesta_config" Type="Self.encuesta_config" Multiplicity="1" />
+          <End Role="resultado" Type="Self.resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_config">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="pr_sel_reporte_asistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TotalMinutos" Type="int" Mode="In" />
+          <Parameter Name="FechaDesde" Type="date" Mode="In" />
+          <Parameter Name="FechaHasta" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="control_metricaModelStoreContainer">
+          <EntitySet Name="asistencias" EntityType="Self.asistencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente_empleado" EntityType="Self.cliente_empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="correlativo" EntityType="Self.correlativo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documentos" EntityType="Self.documentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleados" EntityType="Self.empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_config" EntityType="Self.encuesta_config" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evaluadors" EntityType="Self.evaluadors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gpreguntas" EntityType="Self.gpreguntas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="preguntas" EntityType="Self.preguntas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reporte_asistencia" EntityType="Self.reporte_asistencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="resultado" EntityType="Self.resultado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__asistenci__id_em__4AB81AF0" Association="Self.FK__asistenci__id_em__4AB81AF0">
+            <End Role="empleados" EntitySet="empleados" />
+            <End Role="asistencias" EntitySet="asistencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__preguntas__id_gp__5CD6CB2B" Association="Self.FK__preguntas__id_gp__5CD6CB2B">
+            <End Role="gpreguntas" EntitySet="gpreguntas" />
+            <End Role="preguntas" EntitySet="preguntas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_em__6754599E" Association="Self.FK__resultado__id_em__6754599E">
+            <End Role="empleados" EntitySet="empleados" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_ev__66603565" Association="Self.FK__resultado__id_ev__66603565">
+            <End Role="evaluadors" EntitySet="evaluadors" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_pr__68487DD7" Association="Self.FK__resultado__id_pr__68487DD7">
+            <End Role="preguntas" EntitySet="preguntas" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cliente_empleado_clientes" Association="Self.FK_cliente_empleado_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="cliente_empleado" EntitySet="cliente_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cliente_empleado_empleado" Association="Self.FK_cliente_empleado_empleado">
+            <End Role="empleados" EntitySet="empleados" />
+            <End Role="cliente_empleado" EntitySet="cliente_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cliente_empleado_evaluadors" Association="Self.FK_cliente_empleado_evaluadors">
+            <End Role="evaluadors" EntitySet="evaluadors" />
+            <End Role="cliente_empleado" EntitySet="cliente_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_resultado_encuesta" Association="Self.FK_resultado_encuesta">
+            <End Role="encuesta_config" EntitySet="encuesta_config" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="control_metricaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="app_control" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="pr_sel_reporte_asistencia" ReturnType="Collection(control_metricaModel.pr_sel_reporte_asistencia_Result)">
+            <Parameter Name="TotalMinutos" Mode="In" Type="Int32" />
+            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="asistencias" EntityType="control_metricaModel.asistencias" />
+          <EntitySet Name="cliente_empleado" EntityType="control_metricaModel.cliente_empleado" />
+          <EntitySet Name="clientes" EntityType="control_metricaModel.clientes" />
+          <EntitySet Name="correlativo" EntityType="control_metricaModel.correlativo" />
+          <EntitySet Name="documentos" EntityType="control_metricaModel.documentos" />
+          <EntitySet Name="empleados" EntityType="control_metricaModel.empleados" />
+          <EntitySet Name="encuesta_config" EntityType="control_metricaModel.encuesta_config" />
+          <EntitySet Name="evaluadors" EntityType="control_metricaModel.evaluadors" />
+          <EntitySet Name="gpreguntas" EntityType="control_metricaModel.gpreguntas" />
+          <EntitySet Name="preguntas" EntityType="control_metricaModel.preguntas" />
+          <EntitySet Name="reporte_asistencia" EntityType="control_metricaModel.reporte_asistencia" />
+          <EntitySet Name="resultado" EntityType="control_metricaModel.resultado" />
+          <EntitySet Name="sysdiagrams" EntityType="control_metricaModel.sysdiagrams" />
+          <AssociationSet Name="FK__asistenci__id_em__4AB81AF0" Association="control_metricaModel.FK__asistenci__id_em__4AB81AF0">
+            <End Role="empleados" EntitySet="empleados" />
+            <End Role="asistencias" EntitySet="asistencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cliente_empleado_clientes" Association="control_metricaModel.FK_cliente_empleado_clientes">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="cliente_empleado" EntitySet="cliente_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cliente_empleado_empleado" Association="control_metricaModel.FK_cliente_empleado_empleado">
+            <End Role="empleados" EntitySet="empleados" />
+            <End Role="cliente_empleado" EntitySet="cliente_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cliente_empleado_evaluadors" Association="control_metricaModel.FK_cliente_empleado_evaluadors">
+            <End Role="evaluadors" EntitySet="evaluadors" />
+            <End Role="cliente_empleado" EntitySet="cliente_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_em__6754599E" Association="control_metricaModel.FK__resultado__id_em__6754599E">
+            <End Role="empleados" EntitySet="empleados" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_resultado_encuesta" Association="control_metricaModel.FK_resultado_encuesta">
+            <End Role="encuesta_config" EntitySet="encuesta_config" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_ev__66603565" Association="control_metricaModel.FK__resultado__id_ev__66603565">
+            <End Role="evaluadors" EntitySet="evaluadors" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__preguntas__id_gp__5CD6CB2B" Association="control_metricaModel.FK__preguntas__id_gp__5CD6CB2B">
+            <End Role="gpreguntas" EntitySet="gpreguntas" />
+            <End Role="preguntas" EntitySet="preguntas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resultado__id_pr__68487DD7" Association="control_metricaModel.FK__resultado__id_pr__68487DD7">
+            <End Role="preguntas" EntitySet="preguntas" />
+            <End Role="resultado" EntitySet="resultado" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="pr_sel_reporte_asistencia_Result">
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Total_Minuto" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="asistencias">
+          <Key>
+            <PropertyRef Name="id_asistencia" />
+          </Key>
+          <Property Name="id_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="tipo_asistencia" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_asistencia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora_asistencia" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ip_conexion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="latitud" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="longitud" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="empleados" Relationship="control_metricaModel.FK__asistenci__id_em__4AB81AF0" FromRole="asistencias" ToRole="empleados" />
+        </EntityType>
+        <EntityType Name="cliente_empleado">
+          <Key>
+            <PropertyRef Name="id_cliemp" />
+          </Key>
+          <Property Name="id_cliemp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="id_evaluador" Type="Int32" />
+          <NavigationProperty Name="clientes" Relationship="control_metricaModel.FK_cliente_empleado_clientes" FromRole="cliente_empleado" ToRole="clientes" />
+          <NavigationProperty Name="empleados" Relationship="control_metricaModel.FK_cliente_empleado_empleado" FromRole="cliente_empleado" ToRole="empleados" />
+          <NavigationProperty Name="evaluadors" Relationship="control_metricaModel.FK_cliente_empleado_evaluadors" FromRole="cliente_empleado" ToRole="evaluadors" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="razon_social" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ruc" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="latitud" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="longitud" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente_empleado" Relationship="control_metricaModel.FK_cliente_empleado_clientes" FromRole="clientes" ToRole="cliente_empleado" />
+        </EntityType>
+        <EntityType Name="correlativo">
+          <Key>
+            <PropertyRef Name="id_correlativo" />
+          </Key>
+          <Property Name="id_correlativo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero" Type="Int32" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+          <Property Name="tipo_correlativo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="documentos">
+          <Key>
+            <PropertyRef Name="id_documento" />
+          </Key>
+          <Property Name="id_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ruta" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="leido_por" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="empleados">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dni" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_usuario" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="curri_file" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="hora_ingreso" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="hora_salida" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="asistencias" Relationship="control_metricaModel.FK__asistenci__id_em__4AB81AF0" FromRole="empleados" ToRole="asistencias" />
+          <NavigationProperty Name="cliente_empleado" Relationship="control_metricaModel.FK_cliente_empleado_empleado" FromRole="empleados" ToRole="cliente_empleado" />
+          <NavigationProperty Name="resultado" Relationship="control_metricaModel.FK__resultado__id_em__6754599E" FromRole="empleados" ToRole="resultado" />
+        </EntityType>
+        <EntityType Name="encuesta_config">
+          <Key>
+            <PropertyRef Name="id_encuesta" />
+          </Key>
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_ini" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="puntaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_reg" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="resultado" Relationship="control_metricaModel.FK_resultado_encuesta" FromRole="encuesta_config" ToRole="resultado" />
+        </EntityType>
+        <EntityType Name="evaluadors">
+          <Key>
+            <PropertyRef Name="id_evaluador" />
+          </Key>
+          <Property Name="id_evaluador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cargo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente_empleado" Relationship="control_metricaModel.FK_cliente_empleado_evaluadors" FromRole="evaluadors" ToRole="cliente_empleado" />
+          <NavigationProperty Name="resultado" Relationship="control_metricaModel.FK__resultado__id_ev__66603565" FromRole="evaluadors" ToRole="resultado" />
+        </EntityType>
+        <EntityType Name="gpreguntas">
+          <Key>
+            <PropertyRef Name="id_gpregunta" />
+          </Key>
+          <Property Name="id_gpregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="preguntas" Relationship="control_metricaModel.FK__preguntas__id_gp__5CD6CB2B" FromRole="gpreguntas" ToRole="preguntas" />
+        </EntityType>
+        <EntityType Name="preguntas">
+          <Key>
+            <PropertyRef Name="id_pregunta" />
+          </Key>
+          <Property Name="id_pregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_gpregunta" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="gpreguntas" Relationship="control_metricaModel.FK__preguntas__id_gp__5CD6CB2B" FromRole="preguntas" ToRole="gpreguntas" />
+          <NavigationProperty Name="resultado" Relationship="control_metricaModel.FK__resultado__id_pr__68487DD7" FromRole="preguntas" ToRole="resultado" />
+        </EntityType>
+        <EntityType Name="reporte_asistencia">
+          <Key>
+            <PropertyRef Name="id_reporte_asistencia" />
+          </Key>
+          <Property Name="id_reporte_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Asistencia" Type="DateTime" Precision="0" />
+          <Property Name="Hora_Ingreso_Est" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Hora_Ingreso_Marcado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IP_Ingreso" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Diferencia_Ingreso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Hora_Salida_Est" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Hora_Salida_Marcado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IP_Salida" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Diferencia_Salida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Registro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="resultado">
+          <Key>
+            <PropertyRef Name="id_resultado" />
+          </Key>
+          <Property Name="id_resultado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="id_evaluador" Type="Int32" Nullable="false" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="id_pregunta" Type="Int32" Nullable="false" />
+          <Property Name="anio_evaluacion" Type="Int32" Nullable="false" />
+          <Property Name="mes_evaluacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_evaluacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="puntaje" Type="Int32" Nullable="false" />
+          <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fec_reg" Type="DateTime" Precision="3" />
+          <Property Name="fec_mod" Type="DateTime" Precision="3" />
+          <Property Name="usu_reg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usu_mod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="empleados" Relationship="control_metricaModel.FK__resultado__id_em__6754599E" FromRole="resultado" ToRole="empleados" />
+          <NavigationProperty Name="encuesta_config" Relationship="control_metricaModel.FK_resultado_encuesta" FromRole="resultado" ToRole="encuesta_config" />
+          <NavigationProperty Name="evaluadors" Relationship="control_metricaModel.FK__resultado__id_ev__66603565" FromRole="resultado" ToRole="evaluadors" />
+          <NavigationProperty Name="preguntas" Relationship="control_metricaModel.FK__resultado__id_pr__68487DD7" FromRole="resultado" ToRole="preguntas" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__asistenci__id_em__4AB81AF0">
+          <End Type="control_metricaModel.empleados" Role="empleados" Multiplicity="1" />
+          <End Type="control_metricaModel.asistencias" Role="asistencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleados">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="asistencias">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cliente_empleado_clientes">
+          <End Type="control_metricaModel.clientes" Role="clientes" Multiplicity="1" />
+          <End Type="control_metricaModel.cliente_empleado" Role="cliente_empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="cliente_empleado">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cliente_empleado_empleado">
+          <End Type="control_metricaModel.empleados" Role="empleados" Multiplicity="1" />
+          <End Type="control_metricaModel.cliente_empleado" Role="cliente_empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleados">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="cliente_empleado">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cliente_empleado_evaluadors">
+          <End Type="control_metricaModel.evaluadors" Role="evaluadors" Multiplicity="0..1" />
+          <End Type="control_metricaModel.cliente_empleado" Role="cliente_empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evaluadors">
+              <PropertyRef Name="id_evaluador" />
+            </Principal>
+            <Dependent Role="cliente_empleado">
+              <PropertyRef Name="id_evaluador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_em__6754599E">
+          <End Type="control_metricaModel.empleados" Role="empleados" Multiplicity="1" />
+          <End Type="control_metricaModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleados">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_resultado_encuesta">
+          <End Type="control_metricaModel.encuesta_config" Role="encuesta_config" Multiplicity="1" />
+          <End Type="control_metricaModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_config">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_ev__66603565">
+          <End Type="control_metricaModel.evaluadors" Role="evaluadors" Multiplicity="1" />
+          <End Type="control_metricaModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evaluadors">
+              <PropertyRef Name="id_evaluador" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_evaluador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__preguntas__id_gp__5CD6CB2B">
+          <End Type="control_metricaModel.gpreguntas" Role="gpreguntas" Multiplicity="1" />
+          <End Type="control_metricaModel.preguntas" Role="preguntas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gpreguntas">
+              <PropertyRef Name="id_gpregunta" />
+            </Principal>
+            <Dependent Role="preguntas">
+              <PropertyRef Name="id_gpregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resultado__id_pr__68487DD7">
+          <End Type="control_metricaModel.preguntas" Role="preguntas" Multiplicity="1" />
+          <End Type="control_metricaModel.resultado" Role="resultado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preguntas">
+              <PropertyRef Name="id_pregunta" />
+            </Principal>
+            <Dependent Role="resultado">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="control_metricaModelStoreContainer" CdmEntityContainer="app_control">
+          <FunctionImportMapping FunctionImportName="pr_sel_reporte_asistencia" FunctionName="control_metricaModel.Store.pr_sel_reporte_asistencia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="control_metricaModel.pr_sel_reporte_asistencia_Result">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="Total_Minuto" ColumnName="Total_Minuto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="asistencias">
+            <EntityTypeMapping TypeName="control_metricaModel.asistencias">
+              <MappingFragment StoreEntitySet="asistencias">
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="ip_conexion" ColumnName="ip_conexion" />
+                <ScalarProperty Name="hora_asistencia" ColumnName="hora_asistencia" />
+                <ScalarProperty Name="fecha_asistencia" ColumnName="fecha_asistencia" />
+                <ScalarProperty Name="tipo_asistencia" ColumnName="tipo_asistencia" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente_empleado">
+            <EntityTypeMapping TypeName="control_metricaModel.cliente_empleado">
+              <MappingFragment StoreEntitySet="cliente_empleado">
+                <ScalarProperty Name="id_evaluador" ColumnName="id_evaluador" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_cliemp" ColumnName="id_cliemp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="control_metricaModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="ruc" ColumnName="ruc" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="correlativo">
+            <EntityTypeMapping TypeName="control_metricaModel.correlativo">
+              <MappingFragment StoreEntitySet="correlativo">
+                <ScalarProperty Name="tipo_correlativo" ColumnName="tipo_correlativo" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id_correlativo" ColumnName="id_correlativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentos">
+            <EntityTypeMapping TypeName="control_metricaModel.documentos">
+              <MappingFragment StoreEntitySet="documentos">
+                <ScalarProperty Name="leido_por" ColumnName="leido_por" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleados">
+            <EntityTypeMapping TypeName="control_metricaModel.empleados">
+              <MappingFragment StoreEntitySet="empleados">
+                <ScalarProperty Name="hora_salida" ColumnName="hora_salida" />
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="hora_ingreso" ColumnName="hora_ingreso" />
+                <ScalarProperty Name="curri_file" ColumnName="curri_file" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_config">
+            <EntityTypeMapping TypeName="control_metricaModel.encuesta_config">
+              <MappingFragment StoreEntitySet="encuesta_config">
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="puntaje" ColumnName="puntaje" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_ini" ColumnName="fecha_ini" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evaluadors">
+            <EntityTypeMapping TypeName="control_metricaModel.evaluadors">
+              <MappingFragment StoreEntitySet="evaluadors">
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="id_evaluador" ColumnName="id_evaluador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gpreguntas">
+            <EntityTypeMapping TypeName="control_metricaModel.gpreguntas">
+              <MappingFragment StoreEntitySet="gpreguntas">
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_gpregunta" ColumnName="id_gpregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preguntas">
+            <EntityTypeMapping TypeName="control_metricaModel.preguntas">
+              <MappingFragment StoreEntitySet="preguntas">
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_gpregunta" ColumnName="id_gpregunta" />
+                <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reporte_asistencia">
+            <EntityTypeMapping TypeName="control_metricaModel.reporte_asistencia">
+              <MappingFragment StoreEntitySet="reporte_asistencia">
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Diferencia_Salida" ColumnName="Diferencia_Salida" />
+                <ScalarProperty Name="IP_Salida" ColumnName="IP_Salida" />
+                <ScalarProperty Name="Hora_Salida_Marcado" ColumnName="Hora_Salida_Marcado" />
+                <ScalarProperty Name="Hora_Salida_Est" ColumnName="Hora_Salida_Est" />
+                <ScalarProperty Name="Diferencia_Ingreso" ColumnName="Diferencia_Ingreso" />
+                <ScalarProperty Name="IP_Ingreso" ColumnName="IP_Ingreso" />
+                <ScalarProperty Name="Hora_Ingreso_Marcado" ColumnName="Hora_Ingreso_Marcado" />
+                <ScalarProperty Name="Hora_Ingreso_Est" ColumnName="Hora_Ingreso_Est" />
+                <ScalarProperty Name="Fecha_Asistencia" ColumnName="Fecha_Asistencia" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="id_reporte_asistencia" ColumnName="id_reporte_asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resultado">
+            <EntityTypeMapping TypeName="control_metricaModel.resultado">
+              <MappingFragment StoreEntitySet="resultado">
+                <ScalarProperty Name="usu_mod" ColumnName="usu_mod" />
+                <ScalarProperty Name="usu_reg" ColumnName="usu_reg" />
+                <ScalarProperty Name="fec_mod" ColumnName="fec_mod" />
+                <ScalarProperty Name="fec_reg" ColumnName="fec_reg" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="puntaje" ColumnName="puntaje" />
+                <ScalarProperty Name="fecha_evaluacion" ColumnName="fecha_evaluacion" />
+                <ScalarProperty Name="mes_evaluacion" ColumnName="mes_evaluacion" />
+                <ScalarProperty Name="anio_evaluacion" ColumnName="anio_evaluacion" />
+                <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_evaluador" ColumnName="id_evaluador" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="control_metricaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

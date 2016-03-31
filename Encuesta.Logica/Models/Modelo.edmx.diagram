@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12707adf11454fd891676c75b7e55325" Name="Diagram1">
+        <EntityTypeShape EntityType="control_metricaModel.asistencias" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="control_metricaModel.cliente_empleado" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="control_metricaModel.clientes" Width="1.5" PointX="0.75" PointY="12.25" />
+        <EntityTypeShape EntityType="control_metricaModel.correlativo" Width="1.5" PointX="5.75" PointY="2" />
+        <EntityTypeShape EntityType="control_metricaModel.documentos" Width="1.5" PointX="7.75" PointY="2" />
+        <EntityTypeShape EntityType="control_metricaModel.empleados" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="control_metricaModel.encuesta_config" Width="1.5" PointX="3.75" PointY="2.375" />
+        <EntityTypeShape EntityType="control_metricaModel.evaluadors" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="control_metricaModel.gpreguntas" Width="1.5" PointX="1.5" PointY="17.25" />
+        <EntityTypeShape EntityType="control_metricaModel.preguntas" Width="1.5" PointX="3.75" PointY="17" />
+        <EntityTypeShape EntityType="control_metricaModel.reporte_asistencia" Width="1.5" PointX="8.75" PointY="6" />
+        <EntityTypeShape EntityType="control_metricaModel.resultado" Width="1.5" PointX="6" PointY="6.375" />
+        <EntityTypeShape EntityType="control_metricaModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="2" />
+        <AssociationConnector Association="control_metricaModel.FK__asistenci__id_em__4AB81AF0" />
+        <AssociationConnector Association="control_metricaModel.FK_cliente_empleado_clientes" />
+        <AssociationConnector Association="control_metricaModel.FK_cliente_empleado_empleado" />
+        <AssociationConnector Association="control_metricaModel.FK_cliente_empleado_evaluadors" />
+        <AssociationConnector Association="control_metricaModel.FK__resultado__id_em__6754599E" />
+        <AssociationConnector Association="control_metricaModel.FK_resultado_encuesta" />
+        <AssociationConnector Association="control_metricaModel.FK__resultado__id_ev__66603565" />
+        <AssociationConnector Association="control_metricaModel.FK__preguntas__id_gp__5CD6CB2B" />
+        <AssociationConnector Association="control_metricaModel.FK__resultado__id_pr__68487DD7" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
